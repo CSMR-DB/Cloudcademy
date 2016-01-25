@@ -1,0 +1,108 @@
+<!doctype html>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="style.css" />
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,100' rel='stylesheet' type='text/css'>
+	<meta charset="UTF-8" />    
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js" type="application/javascript"></script>
+    <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js" type="application/javascript"></script>
+    <script src="js/scripts.js" type="text/javascript"></script>
+
+	<title>Succeed | Cloudcademy</title>
+</head>
+<body class="bg">
+
+    <header>
+        <div id="usernav">
+            <nav>
+                <ul>
+                    <li class="timeline">
+                        <a href="timeline.html" class="active">Timeline</a>
+                    </li>
+                    <li class="messages">
+                        <a href="messages.html">Messages</a>
+                    </li>
+                    <li class="friends">
+                        <a href="friends.html">Connections</a>
+                    </li>
+                    <li class="activity">Bookmarks
+                        <section id="activitybox">
+                            <div id="activitylist">
+                                
+                            </div>
+                        </section>
+                    </li>
+                    <li class="alterimg">Settings
+                        <section id="settingsbox">
+                            <div id="settingslist">
+                                <form id="updateimages" action="ajax/userform.php" method="post">
+                                    <ul>
+                                        <li>
+                                            <label for="userAvatar2">Avatar: </label>
+                                            <input type="text" id="userAvatar2" class="userAvatar" name="userAvatar2" />
+                                        </li>
+                                        <li>
+                                            <label for="userHeader2">Header Image: </label>
+                                            <input type="text" id="userHeader2" class="userHeader" name="userHeader2" />
+                                        </li>
+                                        <li>
+                                            <input type="submit" id="submit2" class="submit" value="Update" />
+                                        </li>
+                                    </ul>
+                                </form>
+                            </div>
+                        </section>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <div id="wrappedhead" class="wrapped twelve">
+            <div id="icon">
+                <a href="/" class="home">
+                    <!-- <img src="images/icon.png"/> -->
+                    <span></span>
+                </a>
+            </div>
+            <div id="username">
+                <h1> 
+                    <span class="fullname"></span>
+                </h1>
+            </div>
+        </div>
+    </header>
+
+    <main id="index">
+        <section id="maincontent" class="wrapped twelve flex">
+            <div id="left">
+                <div id="commentbox" class="block">
+                    <div id="preview"></div>
+                    <div id="posting">
+                        <input id="newposttitle" class="text" type="text" placeholder="Write some title in here" />
+                        <textarea id="newposttext" placeholder="Put your post text here"></textarea>
+                        <div id="pButtons">
+                            <input id="image-embed" class="image inline pB" type="text" placeholder="Put your image URL here" />
+                            <input id="video-embed" class="video inline pB" type="text" placeholder="Put your video url here" />
+                        </div>
+                    </div>
+                    <button id="newpostsubmit">Post message</button>
+                </div>
+                <div id="postlist">
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <div id="CONTENT">
+    
+    
+    
+    </div>
+
+    <footer>
+        <section id="wrappedfoot">
+            <p class="copyright">Learning through sharing &hearts;</p>
+        </section>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,195 @@
+<!doctype html>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="style.css" />
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,100' rel='stylesheet' type='text/css'>
+	<meta charset="UTF-8" />    
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js" type="application/javascript"></script>
+    <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js" type="application/javascript"></script>
+    <script src="js/scripts.js" type="text/javascript"></script>
+
+	<title>Succeed | Cloudcademy</title>
+</head>
+<body id="timeline">
+
+    <header>
+        <div id="usernav">
+            <nav>
+                <ul>
+                    <li class="messages">Messages
+                        <section id="messagebox">
+                            <h2>Messages</h2>
+                            <div id="messagelist" class="flex">
+                                <ul id="msg-short">
+                                    <li class="user">A message</li>
+                                    <li class="user">B message</li>
+                                    <li class="user">C etc</li>
+                                    <li class="user">D dis</li>
+                                    <li class="user">E eq</li>
+                                </ul>
+                            </div>
+                        </section>
+                    </li>
+                    <li class="friends">Friends
+                        <section id="friendsbox">
+                            <h2>Also on this platform</h2>
+                            <div id="friendslist">
+                                
+                            </div>
+                        </section>
+                    </li>
+                    <li class="activity">Activity
+                        <section id="activitybox">
+                            <h2>Activity</h2>
+                            <div id="activitylist">
+                                
+                            </div>
+                        </section>
+                    </li>
+                    <li class="alterimg">Settings
+                        <section id="friendsbox">
+                            <h2>Profile</h2>
+                            <div id="friendslist">
+                                <form id="updateimages" action="ajax/userform.php" method="post">
+                                    <ul>
+                                        <li>
+                                            <label for="userAvatar2">Avatar: </label>
+                                            <input type="text" id="userAvatar2" class="userAvatar" name="userAvatar2" />
+                                        </li>
+                                        <li>
+                                            <label for="userHeader2">Header Image: </label>
+                                            <input type="text" id="userHeader2" class="userHeader" name="userHeader2" />
+                                        </li>
+                                        <li>
+                                            <input type="submit" id="submit2" class="submit" value="Update" />
+                                        </li>
+                                    </ul>
+                                </form>
+                            </div>
+                        </section>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <div id="wrappedhead" class="wrapped twelve">
+            <div id="icon">
+                <a href="/" class="home">
+                    <!-- <img src="images/icon.png"/> -->
+                    <span></span>
+                </a>
+            </div>
+            <div id="username">
+                <h1> 
+                    <span class="fullname"></span>
+                </h1>
+            </div>
+        </div>
+    </header>
+
+    <main id="index">
+<!--        <section id="formcontent" class="wrapped">
+            <form id="userform" class="twelve" action="ajax/userform.php" method="post">
+                <h2>Registration form</h2>
+                <ul>
+                    <li>
+                        <label for="userID">ID: </label>
+                        <input type="text" id="userID" name="userID" pattern="\d*" maxlength="7" placeholder="1234567"/>
+                        <span id="spanID" class="spanID"></span>
+                    </li>
+                    <li>
+                        <label for="userName">Name: </label>
+                        <input type="text" id="userName" name="userName" />
+                        <span id="spanName" class="spanName"></span>
+                    </li>
+                    <li>
+                        <label for="userMail">Email: </label>
+                        <input type="email" id="userMail" name="userMail" placeholder="mail@address.com" />
+                    </li>
+                    <li>
+                        <label for="userPass">Password: </label>
+                        <input type="password" id="userPass" name="userPass" />
+                        <span id="spanPass" class="spanPass"></span>
+                    </li>
+                    <li>
+                        <label for="userPass2">Password: </label>
+                        <input type="password" id="userPass2" name="userPass2" />
+                        <span id="spanPass2" class="spanPass"></span>
+                    </li>
+                    <li>
+                        <label for="userAvatar">Avatar: </label>
+                        <input type="text" id="userAvatar" class="userAvatar" name="userAvatar" />
+                    </li>
+                    <li id="colors">
+                        <label>Color:</label>
+                        
+                    </li>
+                    <li>
+                        <label for="userHeader">Header Image: </label>
+                        <input type="text" id="userHeader" class="userHeader" name="userHeader" />
+                    </li>
+                    <li>
+                        <label for="userAge">Age: </label>
+                        <input type="number" min="0" max="100" id="userAge" name="userAge" />
+                    </li>
+                    <li>
+                        <label></label>
+                        <input type="submit" id="submit" value="Register" />
+                    </li>
+                </ul>
+            </form>
+        </section> -->
+        <section id="maincontent" class="wrapped twelve flex">
+            <div id="left">
+                <div id="commentbox" class="block">
+                    <div id="preview"></div>
+                    <div id="posting">
+                        <input id="newposttitle" class="text" type="text" placeholder="Write some title in here" />
+                        <textarea id="newposttext" placeholder="Put your post text here"></textarea>
+                        <div id="pButtons">
+                            <input id="image-embed" class="image inline pB" type="text" placeholder="Put your image URL here" />
+                            <input id="video-embed" class="video inline pB" type="text" placeholder="Put your video url here" />
+                        </div>
+                    </div>
+                    <button id="newpostsubmit">Post message</button>
+                </div>
+                <div id="postlist">
+                    <div class="p">
+                        <div class="block post flex">
+                            <div class="post-img">
+                                <div class="image"></div>
+                            </div>
+                            <div class="post-text">
+                                <h2>This is one post</h2>
+                                <p>Curabitur ligula sapien, tincidunt non, euismod vitae, posuere imperdiet, leo. Maecenas  malesuada. Praesent congue erat at massa. Sed cursus turpis vitae tortor. Donec posuere vulputate arcu. Phasellus accumsan cursus velit. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Sed aliquam, nisi quis porttitor congue, elit erat euismod orci, ac placerat dolor lectus quis orci. Phasellus consectetuer vestibulum elit. Aenean tellus metus, bibendum sed, posuere ac, mattis non, nunc. Vestibulum fringilla pede sit amet augue. In turpis. Pellentesque posuere. Praesent turpis. </p>
+
+                                <span data-type="1">Remove</span>
+                                <span class='like-count' data-type="3">300</span>
+                                <span class='like' data-type="2">Like</span>
+                            </div>
+                        </div>
+                        <div class="comment">
+                            <div class="commentform flex">
+                                <input class="commenttext" placeholder="THIS IS COMMENT"></input>
+                                <button class="subcomment">Reply</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <div id="CONTENT">
+    
+    
+    
+    </div>
+
+    <footer>
+        <section id="wrappedfoot">
+            <p class="copyright">Learning through sharing &hearts;</p>
+        </section>
+    </footer>
+
+</body>
+</html>

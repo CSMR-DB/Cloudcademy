@@ -1,0 +1,823 @@
+/* --- like shape --- */
+/* --- icon list function --- */
+input.messages {
+  background-image: url("icons/messages.png");
+  background-repeat: no-repeat;
+  background-position: 0 50%;
+  background-size: auto 100%;
+  padding-left: 64px; }
+
+nav .messages {
+  padding-left: 0; }
+
+input.activity {
+  background-image: url("icons/activity.png");
+  background-repeat: no-repeat;
+  background-position: 0 50%;
+  background-size: auto 100%;
+  padding-left: 64px; }
+
+nav .activity {
+  padding-left: 0; }
+
+input.friends {
+  background-image: url("icons/friends.png");
+  background-repeat: no-repeat;
+  background-position: 0 50%;
+  background-size: auto 100%;
+  padding-left: 64px; }
+
+nav .friends {
+  padding-left: 0; }
+
+input.settings {
+  background-image: url("icons/settings.png");
+  background-repeat: no-repeat;
+  background-position: 0 50%;
+  background-size: auto 100%;
+  padding-left: 64px; }
+
+nav .settings {
+  padding-left: 0; }
+
+input.alterimg {
+  background-image: url("icons/alterimg.png");
+  background-repeat: no-repeat;
+  background-position: 0 50%;
+  background-size: auto 100%;
+  padding-left: 64px; }
+
+nav .alterimg {
+  padding-left: 0; }
+
+input.favorites {
+  background-image: url("icons/favorites.png");
+  background-repeat: no-repeat;
+  background-position: 0 50%;
+  background-size: auto 100%;
+  padding-left: 64px; }
+
+nav .favorites {
+  padding-left: 0; }
+
+input.search {
+  background-image: url("icons/search.png");
+  background-repeat: no-repeat;
+  background-position: 0 50%;
+  background-size: auto 100%;
+  padding-left: 64px; }
+
+nav .search {
+  padding-left: 0; }
+
+input.image {
+  background-image: url("icons/image.png");
+  background-repeat: no-repeat;
+  background-position: 0 50%;
+  background-size: auto 100%;
+  padding-left: 64px; }
+
+nav .image {
+  padding-left: 0; }
+
+input.id {
+  background-image: url("icons/id.png");
+  background-repeat: no-repeat;
+  background-position: 0 50%;
+  background-size: auto 100%;
+  padding-left: 64px; }
+
+nav .id {
+  padding-left: 0; }
+
+input.name {
+  background-image: url("icons/name.png");
+  background-repeat: no-repeat;
+  background-position: 0 50%;
+  background-size: auto 100%;
+  padding-left: 64px; }
+
+nav .name {
+  padding-left: 0; }
+
+input.mail {
+  background-image: url("icons/mail.png");
+  background-repeat: no-repeat;
+  background-position: 0 50%;
+  background-size: auto 100%;
+  padding-left: 64px; }
+
+nav .mail {
+  padding-left: 0; }
+
+input.pass {
+  background-image: url("icons/pass.png");
+  background-repeat: no-repeat;
+  background-position: 0 50%;
+  background-size: auto 100%;
+  padding-left: 64px; }
+
+nav .pass {
+  padding-left: 0; }
+
+input.text {
+  background-image: url("icons/text.png");
+  background-repeat: no-repeat;
+  background-position: 0 50%;
+  background-size: auto 100%;
+  padding-left: 64px; }
+
+nav .text {
+  padding-left: 0; }
+
+input.image {
+  background-image: url("icons/image.png");
+  background-repeat: no-repeat;
+  background-position: 0 50%;
+  background-size: auto 100%;
+  padding-left: 64px; }
+
+nav .image {
+  padding-left: 0; }
+
+input.video {
+  background-image: url("icons/video.png");
+  background-repeat: no-repeat;
+  background-position: 0 50%;
+  background-size: auto 100%;
+  padding-left: 64px; }
+
+nav .video {
+  padding-left: 0; }
+
+nav .activity, nav .alterimg {
+  padding: 0 16px; }
+
+.red {
+  background: #f2f2f2; }
+
+.green {
+  background: silver; }
+
+.blue {
+  background: #8e8e8e; }
+
+/* --- global declarations --- */
+* {
+  box-sizing: border-box;
+  font-family: Roboto;
+  position: relative; }
+
+section.lb {
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.9);
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 999;
+  padding: 32px 0; }
+  section.lb img {
+    width: auto;
+    max-width: 1600px;
+    max-height: 100vh;
+    margin: 0 auto;
+    display: block;
+    cursor: pointer; }
+
+.r {
+  margin: 0;
+  position: absolute;
+  right: 0;
+  top: 0; }
+
+.ui-effects-transfer {
+  background: rgba(255, 255, 255, 0.4);
+  z-index: 999; }
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0; }
+
+label {
+  display: inline-block;
+  width: 100px;
+  font-size: 14px;
+  height: 50px;
+  line-height: 50px;
+  float: left; }
+
+input {
+  height: 48px;
+  padding: 16px;
+  border: none;
+  cursor: pointer; }
+  input:focus {
+    border-color: #0d0c0c; }
+  input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0; }
+  input[type="number"] {
+    -moz-appearance: textfield; }
+
+button {
+  background: #d9d9d9;
+  margin-top: 16px;
+  padding: 8px;
+  border: none;
+  cursor: pointer; }
+
+a {
+  text-decoration: none; }
+  a:hover {
+    color: #0d0c0c !important; }
+
+img {
+  cursor: pointer; }
+
+section {
+  padding: 8px; }
+
+.flex {
+  display: flex; }
+
+textarea {
+  margin: 0;
+  padding: 16px;
+  border: 1px solid #d9d9d9;
+  min-width: 100%;
+  min-height: 300px;
+  width: 100%;
+  max-width: 100%; }
+
+html, body {
+  margin: 0;
+  padding: 0; }
+
+h1, h2, h3, h4, h5, h6 {
+  color: #0d0c0c; }
+
+.twelve {
+  margin: 0 auto;
+  max-width: 1200px; }
+
+/* --- layout specific --- */
+header {
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  background-size: 100%;
+  width: 100%;
+  padding-top: 100px; }
+  header #wrappedhead {
+    padding: 144px 40px;
+    z-index: 9; }
+  header img {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+    bottom: auto;
+    right: auto; }
+  header > img {
+    position: fixed; }
+  header h1 {
+    margin: 0; }
+  header #icon {
+    background: #4bd3ff;
+    width: 256px;
+    height: 256px;
+    border-radius: 50%;
+    border-width: 10px;
+    border-style: solid;
+    overflow: hidden; }
+    header #icon a {
+      background-repeat: no-repeat;
+      background-position: 50% 50%;
+      background-size: auto 100%;
+      display: block;
+      width: 100%;
+      height: 100%; }
+      header #icon a img {
+        width: 100%;
+        height: 100%; }
+      header #icon a span {
+        color: white;
+        text-align: center;
+        font-size: 78px;
+        line-height: 96px;
+        display: block;
+        height: 100%;
+        position: absolute;
+        width: 100%;
+        top: 0;
+        left: 0;
+        bottom: auto;
+        right: auto; }
+  header #username {
+    padding-left: 48px; }
+  header #usernav {
+    background: white;
+    width: 100%;
+    margin: 0 auto;
+    z-index: 99;
+    padding: 0 8px;
+    position: fixed;
+    top: 0; }
+    header #usernav nav {
+      max-width: 1200px;
+      margin: 0 auto; }
+      header #usernav nav ul {
+        font-size: 0;
+        text-align: right; }
+        header #usernav nav ul > li {
+          display: inline-block;
+          width: auto;
+          height: 100px;
+          line-height: 100px;
+          vertical-align: middle;
+          cursor: pointer;
+          background-color: white;
+          margin-left: 16px;
+          font-size: 32px;
+          font-weight: 200;
+          text-align: left;
+          background-position: 100% 50%; }
+          header #usernav nav ul > li:hover, header #usernav nav ul > li.selected {
+            background-color: #f2f2f2; }
+          header #usernav nav ul > li a {
+            line-height: 100px;
+            display: block;
+            padding: 0 16px; }
+            header #usernav nav ul > li a.active {
+              background: #FAFAFA; }
+          header #usernav nav ul > li section {
+            background: white;
+            padding: 32px;
+            position: absolute;
+            width: 400px;
+            top: 100px;
+            left: auto;
+            bottom: auto;
+            right: 0;
+            z-index: 1;
+            display: none;
+            line-height: 1;
+            font-size: 18px; }
+            header #usernav nav ul > li section li {
+              width: 100%;
+              height: auto;
+              margin: 0;
+              margin-bottom: 16px;
+              padding: 8px 0;
+              line-height: 1; }
+              header #usernav nav ul > li section li input {
+                width: 100%; }
+            header #usernav nav ul > li section #friendslist p {
+              height: 32px;
+              line-height: 32px; }
+              header #usernav nav ul > li section #friendslist p span {
+                border-radius: 999px;
+                background: #f2f2f2;
+                width: 32px;
+                height: 32px;
+                display: inline-block;
+                float: right;
+                cursor: pointer;
+                text-align: center;
+                color: white;
+                font-size: 0; }
+                header #usernav nav ul > li section #friendslist p span:hover {
+                  background: #133913; }
+              header #usernav nav ul > li section #friendslist p.confirmed span {
+                background: #40bf40;
+                font-size: 18px; }
+            header #usernav nav ul > li section #messagelist > div, header #usernav nav ul > li section #messagelist > ul {
+              width: 100%; }
+              header #usernav nav ul > li section #messagelist > div li, header #usernav nav ul > li section #messagelist > ul li {
+                width: 100%;
+                height: auto;
+                margin: 0; }
+              header #usernav nav ul > li section #messagelist > div .user, header #usernav nav ul > li section #messagelist > ul .user {
+                padding: 16px 0; }
+              header #usernav nav ul > li section #messagelist > div .message, header #usernav nav ul > li section #messagelist > ul .message {
+                padding: 16px 0; }
+          header #usernav nav ul > li.selected section {
+            cursor: initial;
+            display: block; }
+  header.selected {
+    width: calc(100% - 400px);
+    float: right; }
+
+#icon, #username {
+  display: inline-block;
+  vertical-align: middle;
+  height: 128px;
+  line-height: 128px; }
+
+/* --- userform --- */
+section#register section#formcontent {
+  z-index: 999; }
+section #userform, section #loginform {
+  background: rgba(255, 255, 255, 0.4) none repeat scroll 0 0;
+  padding: 64px;
+  border: 1px solid #d9d9d9;
+  border-radius: 16px; }
+  section #userform ul, section #loginform ul {
+    font-size: 0; }
+    section #userform ul li, section #loginform ul li {
+      display: block;
+      width: 100%;
+      margin-bottom: 24px;
+      padding: 0; }
+      section #userform ul li#colors > div, section #loginform ul li#colors > div {
+        display: inline-block;
+        width: 48px;
+        height: 48px;
+        margin-right: 24px;
+        cursor: pointer;
+        font-size: 0;
+        vertical-align: middle;
+        line-height: 50px;
+        text-align: center; }
+        section #userform ul li#colors > div.selected, section #loginform ul li#colors > div.selected {
+          border: 4px solid black;
+          line-height: 42px;
+          font-size: 24px; }
+        section #userform ul li#colors > div input[type="radio"], section #loginform ul li#colors > div input[type="radio"] {
+          display: none; }
+          section #userform ul li#colors > div input[type="radio"]:checked ~ label, section #loginform ul li#colors > div input[type="radio"]:checked ~ label {
+            border: 5px solid black; }
+        section #userform ul li#colors > div label.c, section #loginform ul li#colors > div label.c {
+          width: 50px;
+          margin-right: 16px;
+          border-radius: 999px; }
+      section #userform ul li input, section #loginform ul li input {
+        width: calc(100% - 400px); }
+        section #userform ul li input[type="radio"], section #loginform ul li input[type="radio"] {
+          width: 50px;
+          margin: 0; }
+        section #userform ul li input#submit, section #userform ul li input#sm-login, section #loginform ul li input#submit, section #loginform ul li input#sm-login {
+          background: #40bf40;
+          border: none;
+          color: white; }
+          section #userform ul li input#submit:disabled, section #userform ul li input#sm-login:disabled, section #loginform ul li input#submit:disabled, section #loginform ul li input#sm-login:disabled {
+            background: #bf4040; }
+      section #userform ul li span, section #loginform ul li span {
+        display: inline-block;
+        padding-left: 32px;
+        font-size: 14px;
+        width: 232px; }
+section #log {
+  position: fixed;
+  width: 200px;
+  top: auto;
+  left: auto;
+  bottom: 0;
+  right: 0;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  background: white; }
+
+/* --- nav --- */
+#mainnav {
+  background: #f2f2f2;
+  position: fixed;
+  width: 400px;
+  top: 0;
+  left: -100%;
+  bottom: 0;
+  right: auto;
+  z-index: 99; }
+  #mainnav .sidetoggle {
+    position: fixed;
+    width: 64px;
+    top: auto;
+    left: 0;
+    bottom: auto;
+    right: auto;
+    cursor: pointer;
+    height: 64px;
+    z-index: 9; }
+  #mainnav a {
+    display: block;
+    padding: 32px 24px 32px 96px;
+    transition: .5s;
+    background-position: 16px 50%; }
+    #mainnav a:hover {
+      background-color: #d9d9d9;
+      background-position: 32px 50%;
+      padding-left: 112px; }
+  #mainnav.selected {
+    left: 0; }
+    #mainnav.selected .sidetoggle {
+      left: 400px; }
+
+/* --- maincontent --- */
+main {
+  padding: 16px;
+  background: white;
+  z-index: 9; }
+  main #maincontent #left #commentbox {
+    margin-top: 0;
+    margin-bottom: 16px; }
+    main #maincontent #left #commentbox img {
+      max-width: 100%; }
+    main #maincontent #left #commentbox #pButtons {
+      position: absolute;
+      right: 32px;
+      bottom: 16px;
+      width: 64px; }
+      main #maincontent #left #commentbox #pButtons input {
+        float: right;
+        padding: 0;
+        width: 64px;
+        height: 64px;
+        display: block;
+        border: none;
+        font-size: 0; }
+        main #maincontent #left #commentbox #pButtons input:focus {
+          width: 400px;
+          padding-left: 86px;
+          font-size: 16px; }
+    main #maincontent #left #commentbox span {
+      width: 160px;
+      text-align: left;
+      display: inline-block;
+      float: left;
+      cursor: pointer; }
+      main #maincontent #left #commentbox span.selected {
+        background: #f2f2f2; }
+      main #maincontent #left #commentbox span > * {
+        display: inline-block;
+        width: 50%;
+        vertical-align: middle; }
+    main #maincontent #left #commentbox input {
+      width: 100%;
+      border: 1px solid #d9d9d9;
+      border-radius: 0;
+      margin-bottom: 16px; }
+  main #maincontent #left .block {
+    margin-top: 16px;
+    padding: 24px;
+    border: 1px solid #d9d9d9;
+    border-radius: 4px 4px 0 0;
+    text-align: justify; }
+  main #maincontent #left .comment {
+    background: #f2f2f2;
+    margin-bottom: 16px;
+    padding: 16px;
+    border: 1px solid #d9d9d9;
+    border-top: 0;
+    border-radius: 0 0 4px 4px;
+    text-align: justify; }
+    main #maincontent #left .comment > div > input {
+      width: 100%; }
+    main #maincontent #left .comment > div button {
+      margin-top: 0;
+      margin-left: 16px;
+      border-radius: 8px;
+      width: 300px; }
+    main #maincontent #left .comment > .c {
+      padding: 16px; }
+  main #maincontent #left .post .post-img {
+    width: 160px;
+    padding: 0 16px; }
+    main #maincontent #left .post .post-img .image {
+      background-repeat: no-repeat;
+      background-position: 50% 50%;
+      background-size: auto 100%;
+      margin: 16px 0;
+      width: 128px;
+      height: 128px;
+      border-radius: 999px;
+      overflow: hidden; }
+      main #maincontent #left .post .post-img .image > img {
+        width: 100%;
+        height: 100%; }
+  main #maincontent #left .post .post-text {
+    width: calc(100% - 160px);
+    padding-left: 32px; }
+    main #maincontent #left .post .post-text > * {
+      max-width: 100%; }
+    main #maincontent #left .post .post-text > h2 {
+      margin: 16px 0; }
+    main #maincontent #left .post .post-text > p {
+      margin: 32px 0; }
+    main #maincontent #left .post .post-text > span {
+      cursor: pointer; }
+      main #maincontent #left .post .post-text > span:hover {
+        color: #0d0c0c; }
+      main #maincontent #left .post .post-text > span.like-count {
+        float: right;
+        width: 64px;
+        text-align: right; }
+      main #maincontent #left .post .post-text > span.like {
+        float: right;
+        padding-left: 40px; }
+        main #maincontent #left .post .post-text > span.like:before, main #maincontent #left .post .post-text > span.like:after {
+          height: 24px;
+          content: "";
+          background: #b3b3b3;
+          position: absolute;
+          width: 16px;
+          top: auto;
+          left: 0;
+          bottom: 0;
+          right: auto;
+          transform: rotate(45deg);
+          border-top-left-radius: 999px;
+          border-top-right-radius: 999px; }
+        main #maincontent #left .post .post-text > span.like:before {
+          transform: rotate(-45deg);
+          left: -6px; }
+        main #maincontent #left .post .post-text > span.like:hover:before, main #maincontent #left .post .post-text > span.like:hover:after {
+          background: #b87a7a; }
+        main #maincontent #left .post .post-text > span.like.clicked:before, main #maincontent #left .post .post-text > span.like.clicked:after {
+          background: #bf4040; }
+  main #maincontent > div {
+    width: 100%; }
+  main.selected {
+    width: calc(100% - 400px);
+    float: right;
+    border-left: 1px solid #d9d9d9; }
+
+/* --- footer --- */
+footer {
+  background: #f2f2f2;
+  border-top: 1px solid #d9d9d9;
+  float: left;
+  width: 100%;
+  text-align: center; }
+  footer.selected {
+    width: calc(100% - 400px);
+    float: right; }
+
+/* --- register --- */
+#reg {
+  background: url("images/clouds.jpg") no-repeat fixed 50% 50%/100%; }
+  #reg section#title {
+    padding: 256px 0;
+    text-align: center;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    bottom: auto;
+    right: auto;
+    height: 100vh; }
+    #reg section#title svg {
+      max-width: 800px; }
+    #reg section#title h2 {
+      display: inline-block;
+      font-size: 48px;
+      font-weight: 100;
+      cursor: pointer; }
+      #reg section#title h2#regClick {
+        padding-right: 64px; }
+  #reg section {
+    background: transparent;
+    min-height: 100vh; }
+    #reg section#register, #reg section#login {
+      display: none;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      left: 0;
+      bottom: auto;
+      right: auto;
+      height: 100vh; }
+    #reg section h2#hidereg, #reg section h2#hidelogin {
+      width: auto;
+      height: 128px;
+      border-radius: 999px;
+      margin: 0 auto 32px;
+      text-align: center;
+      cursor: pointer;
+      font-size: 64px;
+      line-height: 128px; }
+    #reg section div {
+      background: transparent; }
+      #reg section div > #userform {
+        background: rgba(255, 255, 255, 0.4);
+        padding: 64px;
+        border: none;
+        margin-bottom: 256px; }
+        #reg section div > #userform ul li input {
+          width: calc(100% - 232px);
+          padding: 16px 16px 16px 64px; }
+
+/* --- FRIENDS PAGE --- */
+#friends {
+  max-width: 1200px;
+  margin: 0 auto; }
+  #friends .fbox {
+    padding: 16px;
+    margin-bottom: 16px;
+    border: 1px solid #DDD; }
+    #friends .fbox .hdr {
+      width: 100%;
+      height: 400px;
+      overflow: hidden; }
+      #friends .fbox .hdr img {
+        width: 100%;
+        position: absolute; }
+    #friends .fbox div.friendsavatar {
+      background: white;
+      padding: 16px;
+      height: 200px;
+      width: 200px;
+      overflow: hidden;
+      margin-top: -100px;
+      margin-left: 64px;
+      margin-right: 16px;
+      border-radius: 50%; }
+      #friends .fbox div.friendsavatar img {
+        width: 100%;
+        border-radius: 50%; }
+    #friends .fbox .friendscontent {
+      padding: 16px;
+      width: calc(100% - 280px); }
+      #friends .fbox .friendscontent .fbtns {
+        position: absolute;
+        top: 0;
+        right: 0; }
+        #friends .fbox .friendscontent .fbtns button {
+          line-height: 1;
+          margin-left: 16px; }
+          #friends .fbox .friendscontent .fbtns button.connected {
+            background: #267326;
+            color: white; }
+          #friends .fbox .friendscontent .fbtns button:hover {
+            background: #738c73; }
+    #friends .fbox .fd {
+      display: inline-block;
+      vertical-align: top; }
+
+/* --- MESSAGES PAGE --- */
+#messages {
+  max-width: 1200px;
+  margin: 0 auto; }
+  #messages .fmsg {
+    border: 1px solid #DDD;
+    padding: 16px;
+    margin-bottom: 16px; }
+    #messages .fmsg .fd {
+      display: inline-block;
+      vertical-align: top; }
+    #messages .fmsg div.friendsavatar {
+      background: white;
+      height: 100px;
+      width: 100px;
+      overflow: hidden;
+      margin-right: 16px;
+      border-radius: 50%; }
+      #messages .fmsg div.friendsavatar img {
+        width: 100%;
+        min-height: 100%; }
+    #messages .fmsg div.friendscontent {
+      width: 300px; }
+    #messages .fmsg div.friendsconversation {
+      width: calc(100% - 416px); }
+      #messages .fmsg div.friendsconversation input {
+        border: 1px solid #DDD;
+        width: calc(100% - 100px); }
+      #messages .fmsg div.friendsconversation button {
+        margin: 0;
+        width: 100px;
+        height: 48px; }
+      #messages .fmsg div.friendsconversation .msglist {
+        background: #FAFAFA; }
+        #messages .fmsg div.friendsconversation .msglist.contains {
+          padding: 16px; }
+        #messages .fmsg div.friendsconversation .msglist p {
+          padding: 8px;
+          border: 1px solid #DDD;
+          background: #FFF;
+          margin: 4px 0 4px 100px; }
+          #messages .fmsg div.friendsconversation .msglist p.re {
+            margin: 24px 100px 24px 0; }
+          #messages .fmsg div.friendsconversation .msglist p.scream {
+            font-family: 'Arial';
+            font-weight: bold;
+            font-size: 48px; }
+
+/* --- SVG logo --- */
+@keyframes mymove {
+  0% {
+    fill: white; }
+  25% {
+    fill: #b3b3b3; }
+  50% {
+    fill: white; }
+  75% {
+    fill: #b3b3b3; }
+  100% {
+    fill: white; } }
+svg {
+  display: block;
+  margin: 0 auto; }
+  svg .st0 {
+    fill: black; }
