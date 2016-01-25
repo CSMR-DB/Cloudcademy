@@ -257,7 +257,8 @@ html, body {
   padding: 0; }
 
 h1, h2, h3, h4, h5, h6 {
-  color: #0d0c0c; }
+  color: #0d0c0c;
+  font-weight: 300; }
 
 .twelve {
   margin: 0 auto;
@@ -591,12 +592,11 @@ main {
       background-size: auto 100%;
       margin: 16px 0;
       width: 128px;
-      height: 128px;
-      border-radius: 999px;
-      overflow: hidden; }
+      height: 128px; }
       main #maincontent #left .post .post-img .image > img {
         width: 100%;
-        height: 100%; }
+        height: 100%;
+        border-radius: 999px; }
   main #maincontent #left .post .post-text {
     width: calc(100% - 160px);
     padding-left: 32px; }

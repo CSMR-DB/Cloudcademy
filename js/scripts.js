@@ -172,7 +172,7 @@ function reset_images() {
         userHeader = localStorage.getItem("itemHeader");
     
     $("body.bg").css('background', 'url("' + userHeader + '") no-repeat fixed 50% 50% / 100%');
-    $("#icon a, .post-img .image").html("<img src='" + userAvatar + "'>");
+    $("#icon a").html("<img src='" + userAvatar + "'>");
     // $("#icon a, .post-img .image").css('background', 'url("' + userAvatar + '") no-repeat fixed 50% 50% / 100%');
     
     $("input.userAvatar").val(localStorage.getItem("itemAvatar"));
@@ -190,15 +190,16 @@ function registree(studentid, name, pass, color, avatar, header, loves) {
     this.Password = pass;
 }
 
-function create_post(title, image, video, text, likes) {
+function create_post(title, image, video, text, likes, name) {
     
     var fTitle = title,
         fImage = image,
         fVideo = video.replace("watch?v=", "embed/"),
         fText = text,
+        fAvatar = "<img src='" + name.Avatar + "'><h3>" + name.Name + "</h3>",
 
         postHead = "<div class='p'><div class='block post flex'><div class='post-img'>" + 
-                   "<div class='image'></div></div><div class='post-text'>",
+                   "<div class='image'>" + fAvatar + "</div></div><div class='post-text'>",
 
         postComment =  "<span data-type=\"1\">Remove</span><span class='like-count' data-type=\"3\">" + (0 + likes) + 
                        "</span><span class='like' data-type=\"2\">Save</span></div></div>" + 
@@ -289,7 +290,6 @@ function messages(target, location) {
 
     if (receiver == "Rogier") {
 
-        reply("allright", "CARLIEEEEEN!!!!", "scream");
         reply("hi", "Klootzak");
         reply("", "Oh, weet ik niet");
 
@@ -366,11 +366,16 @@ var loginAttempts = 3;
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
 
-var friends = [new registree ("1240874", "Lysanne", "Westra", "coral", "images/pfimg-4.jpg", "images/clouds.jpg", "Adobe"),
-                new registree ("1772361", "Anne", "Dreuning", "chocolate", "images/pfimg-1.jpg", "images/clouds-1.jpg", "Tim"),
-                new registree ("1244415", "Mitchell", "deRooij", "limegreen", "images/pfimg-2.jpg", "images/clouds-2.jpg", "Javascript"),
-                new registree ("1244676", "Rogier", "Sangers", "bordeaux", "images/pfimg.jpg", "images/clouds-3.jpg", "Apple"),
-                new registree ("1266545", "Susan", "Sangers", "bordeaux", "images/pfimg-3.jpg", "images/clouds-4.jpg", "Apple")];
+var Lysanne =   new registree ("1240874", "Lysanne", "Westra", "coral", "images/pfimg-4.jpg", "images/clouds.jpg", "Adobe");
+var Anne =      new registree ("1772361", "Anne", "Dreuning", "chocolate", "images/pfimg-1.jpg", "images/clouds-1.jpg", "Tim");
+var Mitchell =  new registree ("1244415", "Mitchell", "deRooij", "limegreen", "images/pfimg-2.jpg", "images/clouds-2.jpg", "Javascript");
+var Rogier =    new registree ("1244676", "Rogier", "Sangers", "bordeaux", "images/pfimg.jpg", "images/clouds-3.jpg", "Apple");
+var Susan =     new registree ("1266545", "Susan", "Sangers", "bordeaux", "images/pfimg-3.jpg", "images/clouds-4.jpg", "Apple");
+
+var friends = [Lysanne, Anne, Mitchell, Rogier, Susan];
+
+
+console.log(Anne.Avatar);
 
 // Everything that needs to run initially goes first
 $(document).ready(function () {
@@ -384,9 +389,12 @@ $(document).ready(function () {
         
         $("#postlist").html("");
         
-        create_post("Test", "images/clouds.jpg", "", "Post", 310);
-        create_post("DRY", "https://i.ytimg.com/vi/IGH4-ZhfVDk/maxresdefault.jpg", "", "Don't Repeat Yourself", 100);
-        create_post("Video", "", "https://www.youtube.com/watch?v=LyLviXQERZU", "Video", 200);
+        create_post("jQuery", "http://www.hnldesign.nl/wp-content/uploads/2013/01/jQuery-debouncing-events.jpg", "", "Write less, do more", 310, Rogier);
+        create_post("DRY", "https://i.ytimg.com/vi/IGH4-ZhfVDk/maxresdefault.jpg", "", "Don't Repeat Yourself", 100, Anne);
+        create_post("Video", "", "https://www.youtube.com/watch?v=LyLviXQERZU", "Video", 200, Mitchell);
+        create_post("Adobe", "http://cdn02.androidauthority.net/wp-content/uploads/2015/06/Adobe-Creative-Cloud.jpg", "", "Creative Cloud", 408, Lysanne);
+        create_post("Marketing", "http://fortunednagroup.com/wp-content/uploads/marketing1.jpg", "", "Alles.", 102, Susan);
+        create_post("Panda", "http://www.lumosmarketing.com.au/wp-content/uploads/2014/10/original.jpg", "", "Op een rots", 500, Mitchell);
         
     } 
     
@@ -396,11 +404,13 @@ $(document).ready(function () {
         
         $("#postlist").html("");
         
-        create_post("jQuery", "http://www.hnldesign.nl/wp-content/uploads/2013/01/jQuery-debouncing-events.jpg", "", "Write less, do more", 310);
-        create_post("DRY", "https://i.ytimg.com/vi/IGH4-ZhfVDk/maxresdefault.jpg", "", "Don't Repeat Yourself", 100);
-        create_post("Video", "", "https://www.youtube.com/watch?v=LyLviXQERZU", "Video", 200);
-        create_post("Adobe", "http://cdn02.androidauthority.net/wp-content/uploads/2015/06/Adobe-Creative-Cloud.jpg", "", "Creative Cloud", 408);
-        create_post("Marketing", "http://fortunednagroup.com/wp-content/uploads/marketing1.jpg", "", "Alles.", 102);
+        create_post("jQuery", "http://www.hnldesign.nl/wp-content/uploads/2013/01/jQuery-debouncing-events.jpg", "", "Write less, do more", 310, Rogier);
+        create_post("DRY", "https://i.ytimg.com/vi/IGH4-ZhfVDk/maxresdefault.jpg", "", "Don't Repeat Yourself", 100, Anne);
+        create_post("Video", "", "https://www.youtube.com/watch?v=LyLviXQERZU", "Video", 200, Mitchell);
+        create_post("Adobe", "http://cdn02.androidauthority.net/wp-content/uploads/2015/06/Adobe-Creative-Cloud.jpg", "", "Creative Cloud", 408, Lysanne);
+        create_post("Marketing", "http://fortunednagroup.com/wp-content/uploads/marketing1.jpg", "", "Alles.", 102, Susan);
+        create_post("HU", "http://www.duic.nl/wp-content/uploads/2011/10/ANP-16396998.jpg", "", "HU", 172, me);
+        create_post("Apple", "http://i.kinja-img.com/gawker-media/image/upload/js3clwbq88ahptxnza3i.jpg", "", "Eat this", 335, Rogier);
         
         localStorage.setItem(("itemPostList"), $("#postlist").html());
         
@@ -420,22 +430,6 @@ $(document).ready(function () {
                 
         reset_colors();
         
-    });
-        
-    // Scroll events handled by jQuery
-    $(document).scroll(function() {
-		var scroll = jQuery(this).scrollTop();
-        $("#log").html(scroll);
-            
-        if (scroll > 500 && scroll < 1000) {
-            $("#log").addClass("red").removeClass("green").removeClass("blue");
-        } else if (scroll > 1000 && scroll < 1500) {
-            $("#log").removeClass("red").addClass("green").removeClass("blue");            
-        } else if (scroll > 1500) {
-            $("#log").removeClass("red").removeClass("green").addClass("blue");
-        } else {
-            $("#log").removeClass("red").removeClass("green").removeClass("blue");
-        }
     });
     
     $("body").on("click", "#regClick", function (e) {
@@ -697,6 +691,27 @@ $(document).ready(function () {
             
         }
         
+        // Update localStorage with every new comment
+        localStorage.setItem(("itemPostList"), $("#postlist").html());
+    });
+    
+    $("body").on("keypress", ".commenttext", function (e) {
+        e.stopPropagation();
+        
+        var commentText = $(this).val();
+        
+        if (e.which == 13) {
+
+            if (commentText !== "") {
+
+                $(this).parent().parent().append("<div class='c'>" + commentText + "</div>");
+                reset_colors();
+                $(".commenttext").val("");
+
+            }
+            
+        }
+
         // Update localStorage with every new comment
         localStorage.setItem(("itemPostList"), $("#postlist").html());
     });
