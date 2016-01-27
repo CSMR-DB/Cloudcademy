@@ -212,8 +212,8 @@ function create_post(title, image, video, text, likes, name, avatar) {
         postHead = "<div class='p'><div class='block post flex'><div class='post-img'>" + 
                    "<div class='image'>" + fAvatar + fName + "</div></div><div class='post-text'>",
 
-        postComment =  "<span data-type=\"1\">Remove</span><span class='like-count' data-type=\"3\">" + (0 + likes) + 
-                       "</span><span class='like' data-type=\"2\">Save</span></div></div>" + 
+        postComment =  "</div></div><div class=\"post-io\"><span data-type=\"1\">Remove</span><span class='like-count' data-type=\"3\">" + (0 + likes) + 
+                       "</span><span class='like' data-type=\"2\">Save</span></div>" + 
                        "<div class='comment'>" + 
                        "<div class='commentform flex'>" + 
                        "<input class='commenttext' placeholder='Reply to this!..'></input>" + 
@@ -399,7 +399,7 @@ $(document).ready(function () {
         
         create_post("jQuery", "content/jquery.jpg", "", "Write less, do more", 310, Rogier.Name, Rogier.Avatar);
         create_post("DRY", "content/dry.jpg", "", "Don't Repeat Yourself", 100, Anne.Name, Anne.Avatar);
-        create_post("Video", "", "https://www.youtube.com/watch?v=LyLviXQERZU", "Video", 200, Mitchell.name, Mitchell.Avatar);
+        create_post("Video", "", "https://www.youtube.com/watch?v=LyLviXQERZU", "Video", 200, Mitchell.Name, Mitchell.Avatar);
         create_post("Adobe", "content/adobecc.jpg", "", "Creative Cloud", 408, Lysanne.Name, Lysanne.Avatar);
         create_post("Marketing", "content/marketing.jpg", "", "Alles.", 102, Susan.Name, Susan.Avatar);
         create_post("HU", "content/hu.jpg", "", "HU", 172, me.Name, me.Avatar);
@@ -413,7 +413,7 @@ $(document).ready(function () {
         
         create_post("jQuery", "content/jquery.jpg", "", "Write less, do more", 310, Rogier.Name, Rogier.Avatar);
         create_post("DRY", "content/dry.jpg", "", "Don't Repeat Yourself", 100, Anne.Name, Anne.Avatar);
-        create_post("Video", "", "https://www.youtube.com/watch?v=LyLviXQERZU", "Video", 200, Mitchell.name, Mitchell.Avatar);
+        create_post("Video", "", "https://www.youtube.com/watch?v=LyLviXQERZU", "Video", 200, Mitchell.Name, Mitchell.Avatar);
         create_post("Adobe", "content/adobecc.jpg", "", "Creative Cloud", 408, Lysanne.Name, Lysanne.Avatar);
         create_post("Marketing", "content/marketing.jpg", "", "Alles.", 102, Susan.Name, Susan.Avatar);
         create_post("HU", "content/hu.jpg", "", "HU", 172, me.Name, me.Avatar);
@@ -423,23 +423,7 @@ $(document).ready(function () {
         
     }
     
-    // Generate list of pre-registered numbers
-    $.each(prereg, function(index, obj) {    
-        $("#friendslist").append( "<p class=\"" + obj.StudentID + "\">" + obj.StudentID + " - " + obj.Name + "<span class=\"add\">&#10004;</span></p>" );
-    });
-    
-    $("body").on("click", "#friendslist span", function (e) {
-        e.stopPropagation();
-        
-        $(this).parent().toggleClass("confirmed");
-        
-        localStorage.setItem(("itemFriendsList"), $("#friendslist").html());
-                
-        reset_colors();
-        
-    });
-    
-    $("body").on("click", "#regClick", function (e) {
+    $('body').on("click", "#regClick", function (e) {
         
         $(this).parent().fadeOut(400);
         
@@ -461,7 +445,7 @@ $(document).ready(function () {
         
     });
     
-    $("body").on("click", "#loginClick", function (e) {
+    $('body').on("click", "#loginClick", function (e) {
         
         $(this).parent().fadeOut(400);
         
@@ -477,7 +461,7 @@ $(document).ready(function () {
         
     });
     
-    $("body").on("click", "#commentbox span", function (e) {
+    $('body').on("click", "#commentbox span", function (e) {
         e.stopPropagation
         
         $(e.currentTarget).addClass("selected");
@@ -491,7 +475,7 @@ $(document).ready(function () {
     });
     
     // Post span click events ON LIKE &| REMOVE
-    $('body').on('click', '.post span', function (e) {
+    $('body').on('click', '.p span', function (e) {
         e.stopPropagation();
         
         var userName = localStorage.getItem("itemName");
@@ -518,18 +502,22 @@ $(document).ready(function () {
                     });
                     
                 });
-                $(e.currentTarget).siblings(".like-count").html(parseInt($(e.currentTarget).siblings(".like-count").html())+1);
+                $(e.currentTarget).siblings('.like-count').html(parseInt($(e.currentTarget).siblings('.like-count').html())+1);
             } else {
-                $(e.currentTarget).siblings(".like-count").html(parseInt($(e.currentTarget).siblings(".like-count").html())-1);
+                $(e.currentTarget).siblings('.like-count').html(parseInt($(e.currentTarget).siblings('.like-count').html())-1);
                 
                 $('#activitylist').find(':contains(' + likeTitle + ')').remove();
                 
-                localStorage.setItem(("likedPosts"), $("#activitylist").html());
+                localStorage.setItem(("likedPosts"), $('#activitylist').html());
 
             }
             
         } else if ($(e.currentTarget).data('type') == '1') {
-            $(this).parentsUntil("#postlist").remove().fadeOut(600);
+            $(this).closest('.p').effect("drop", 900, function() {
+                
+                $(this).remove();
+                
+            });
         }
         
         localStorage.setItem(("itemPostList"), $("#postlist").html());
@@ -670,7 +658,7 @@ $(document).ready(function () {
         }
         
     });
-    
+        
     // Creating a new post and submitting
     $("body").on("click", "#newpostsubmit", function (e) {
         
@@ -684,7 +672,7 @@ $(document).ready(function () {
             likes = 0,
         
             avatar = $('.home img').attr("src"),
-            name = $('.username span').text();
+            name = localStorage.getItem("itemName");
         
         create_post(fTitle, fImage, fVideo, fText, likes, name, avatar);
         
