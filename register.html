@@ -4,8 +4,8 @@
 	<link rel="stylesheet" type="text/css" href="style.css" />
     <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,100' rel='stylesheet' type='text/css'>
 	<meta charset="UTF-8" />    
-    <script src="https://code.jquery.com/jquery-2.1.4.min.js" type="application/javascript"></script>
-    <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js" type="application/javascript"></script>
+    <script src="js/jquery-2.2.0.min.js" type="application/javascript"></script>
+    <script src="js/jquery-ui.min.js" type="application/javascript"></script>
     <script src="js/scripts.js" type="text/javascript"></script>
 
 	<title>Succeed | Cloudcademy</title>
@@ -72,7 +72,7 @@
         <h2 id="hidereg">SLUIT DEZE</h2>
         <div id="r" class="formcontent wrapped">
             <form id="userform" class="twelve" action="ajax/userform.php" method="post">
-                <ul>
+                <ul class="f-li">
                     <li>
                         <input type="text" id="userID" class="id" name="userID" pattern="\d*" maxlength="7" placeholder="1234567" />
                         <span id="spanID" class="spanID"></span>
@@ -92,14 +92,16 @@
                         <input type="password" id="userPass2" class="pass" name="userPass2" placeholder="password" />
                         <span id="spanPass2" class="spanPassR"></span>
                     </li>
-<!--                    <li>
-                        <input type="text" id="userAvatar" class="userAvatar" name="userAvatar" />
-                    </li> -->
-                    <li id="colors">                        
+                </ul>
+                <ul class="s-li">
+                    <li>
+                        <input type="text" id="userAvatar" class="userAvatar" name="userAvatar" placeholder="Share your profile image here"/>
+                    </li>                        
                     </li>
-<!--                    <li>
-                        <input type="text" id="userHeader" class="userHeader" name="userHeader" />
-                    </li> -->
+                    <li>
+                        <input type="text" id="userHeader" class="userHeader" name="userHeader" placeholder="Add a header image here"/>
+                    </li>
+                    <li id="colors">
                     <li>
                         <input type="submit" id="submit" value="Register" />
                     </li>
@@ -129,12 +131,5 @@
             </form>
         </div>        
     </section>
-    
-    <div id="CONTENT">
-    
-<!--        <p>This is content from another page</p>
-        <img src="http://avocaventures.com/wp-content/uploads/2014/11/lines-of-code.jpg"></img> -->
-    
-    </div>
     
 </body>

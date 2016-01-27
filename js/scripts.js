@@ -151,17 +151,19 @@ function reset_colors() {
     // Get localStorage value returns if submit was available
     var userColor = localStorage.getItem("itemColor");
     
+    if (userColor == "undefined" || userColor == undefined || userColor == "") {
+        
+        userColor = "royalblue";
+        
+    }
+    
     // Style elements based on submitted color (HEX, RGBA, HSLA or HTML)
     $("#icon, #left").css("border-color", userColor);
     $("h1, a, .post-text > span, .post-text > h2").css("color", userColor);
     $("#friendslist p span").css("background-color", "hsla(0, 0%, 90%, 1)")
     $(".sidetoggle, #friendslist p.confirmed span").css("background-color", userColor);
-    $("input").focus(function () {
-        $(this).css("border-color", userColor);
-    });
-    $("input").focusout(function () {
-        $(this).css("border-color", "hsla(0, 0%, 90%, 1)");
-    });
+    $("input").focus(function () { $(this).css("border-color", userColor); });
+    $("input").focusout(function () { $(this).css("border-color", "hsla(0, 0%, 90%, 1)"); });
     $("svg path, .st0").css("fill", userColor);
         
 }
@@ -171,16 +173,21 @@ function reset_images() {
     var userAvatar = localStorage.getItem("itemAvatar"),
         userHeader = localStorage.getItem("itemHeader");
     
-    $("body.bg").css('background', 'url("' + userHeader + '") no-repeat fixed 50% 50% / 100%');
-    $("#icon a").html("<img src='" + userAvatar + "'>");
-    // $("#icon a, .post-img .image").css('background', 'url("' + userAvatar + '") no-repeat fixed 50% 50% / 100%');
+    if ( userAvatar == "undefined" || userAvatar == undefined || userAvatar == "" ) { userAvatar = "images/avatar.jpg"; }
     
-    $("input.userAvatar").val(localStorage.getItem("itemAvatar"));
-    $("input.userHeader").val(localStorage.getItem("itemHeader"));
+    if ( userHeader == "undefined" || userHeader == undefined || userHeader == "" ) { userHeader = "images/clouds.jpg"; }
+    
+    $('body.bg').css('background', 'url("' + userHeader + '") no-repeat fixed 50% 50% / 100%');
+    $('#icon a').html("<img src='" + userAvatar + "'>");
+    
+    $('input.userAvatar').val(userAvatar);
+    $('input.userHeader').val(userHeader);
     
 }
 
-function registree(studentid, name, pass, color, avatar, header, loves) {
+////////////////////////////////////////////////////////////////////////////////////////////////
+
+function registree(studentid, name, pass, color, avatar, header, loves, info, group1, group2) {
     this.StudentID = studentid;
     this.Name = name;
     this.Color = color;
@@ -188,18 +195,22 @@ function registree(studentid, name, pass, color, avatar, header, loves) {
     this.Header = header;
     this.Loves = loves;
     this.Password = pass;
+    this.Info = info;
+    this.Group1 = group1;
+    this.Group2 = group2;
 }
 
-function create_post(title, image, video, text, likes, name) {
+function create_post(title, image, video, text, likes, name, avatar) {
     
     var fTitle = title,
         fImage = image,
         fVideo = video.replace("watch?v=", "embed/"),
         fText = text,
-        fAvatar = "<img src='" + name.Avatar + "'><h3>" + name.Name + "</h3>",
+        fAvatar = "<img src='" + avatar + "'>",
+        fName = "<h3>" + name + "</h3>",
 
         postHead = "<div class='p'><div class='block post flex'><div class='post-img'>" + 
-                   "<div class='image'>" + fAvatar + "</div></div><div class='post-text'>",
+                   "<div class='image'>" + fAvatar + fName + "</div></div><div class='post-text'>",
 
         postComment =  "<span data-type=\"1\">Remove</span><span class='like-count' data-type=\"3\">" + (0 + likes) + 
                        "</span><span class='like' data-type=\"2\">Save</span></div></div>" + 
@@ -358,7 +369,7 @@ for( i = 0; i < regArray.length; i++ ){ invalidID.push(regArray[i].StudentID); }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
 
-var invalidNames = ["Hekman", "Koning", "ErikHekman", "ThijsWaardenburg", "Ronald", "RonaldVanEssen"];
+// var invalidNames = ["Hekman", "Koning", "ErikHekman", "ThijsWaardenburg", "Ronald", "RonaldVanEssen"];
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -366,16 +377,13 @@ var loginAttempts = 3;
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
 
-var Lysanne =   new registree ("1240874", "Lysanne", "Westra", "coral", "images/pfimg-4.jpg", "images/clouds.jpg", "Adobe");
-var Anne =      new registree ("1772361", "Anne", "Dreuning", "chocolate", "images/pfimg-1.jpg", "images/clouds-1.jpg", "Tim");
-var Mitchell =  new registree ("1244415", "Mitchell", "deRooij", "limegreen", "images/pfimg-2.jpg", "images/clouds-2.jpg", "Javascript");
-var Rogier =    new registree ("1244676", "Rogier", "Sangers", "bordeaux", "images/pfimg.jpg", "images/clouds-3.jpg", "Apple");
-var Susan =     new registree ("1266545", "Susan", "Sangers", "bordeaux", "images/pfimg-3.jpg", "images/clouds-4.jpg", "Apple");
+var Lysanne =   new registree ("1240874", "Lysanne", "Westra", "coral", "images/pfimg-4.jpg", "images/clouds.jpg", "Vormgeving", "Here is a short biography", "Anybody Can Learn", "Adobe");
+var Anne =      new registree ("1772361", "Anne", "Dreuning", "chocolate", "images/pfimg-1.jpg", "images/clouds-1.jpg", "Marketing Communicatie", "Ja mooi dit", "Marketing", "");
+var Mitchell =  new registree ("1244415", "Mitchell", "deRooij", "limegreen", "images/pfimg-2.jpg", "images/clouds-2.jpg", "Javascript", "", "Marketing", "Prototyping");
+var Rogier =    new registree ("1244676", "Rogier", "Sangers", "bordeaux", "images/pfimg.jpg", "images/clouds-3.jpg", "Apple", "", "Crossmedia", "Wordpress");
+var Susan =     new registree ("1266545", "Susan", "vanVeenendaal", "bordeaux", "images/pfimg-3.jpg", "images/clouds-4.jpg", "Webdesign", "Hoi", "Adobe", "");
 
 var friends = [Lysanne, Anne, Mitchell, Rogier, Susan];
-
-
-console.log(Anne.Avatar);
 
 // Everything that needs to run initially goes first
 $(document).ready(function () {
@@ -389,28 +397,27 @@ $(document).ready(function () {
         
         $("#postlist").html("");
         
-        create_post("jQuery", "http://www.hnldesign.nl/wp-content/uploads/2013/01/jQuery-debouncing-events.jpg", "", "Write less, do more", 310, Rogier);
-        create_post("DRY", "https://i.ytimg.com/vi/IGH4-ZhfVDk/maxresdefault.jpg", "", "Don't Repeat Yourself", 100, Anne);
-        create_post("Video", "", "https://www.youtube.com/watch?v=LyLviXQERZU", "Video", 200, Mitchell);
-        create_post("Adobe", "http://cdn02.androidauthority.net/wp-content/uploads/2015/06/Adobe-Creative-Cloud.jpg", "", "Creative Cloud", 408, Lysanne);
-        create_post("Marketing", "http://fortunednagroup.com/wp-content/uploads/marketing1.jpg", "", "Alles.", 102, Susan);
-        create_post("Panda", "http://www.lumosmarketing.com.au/wp-content/uploads/2014/10/original.jpg", "", "Op een rots", 500, Mitchell);
+        create_post("jQuery", "content/jquery.jpg", "", "Write less, do more", 310, Rogier.Name, Rogier.Avatar);
+        create_post("DRY", "content/dry.jpg", "", "Don't Repeat Yourself", 100, Anne.Name, Anne.Avatar);
+        create_post("Video", "", "https://www.youtube.com/watch?v=LyLviXQERZU", "Video", 200, Mitchell.name, Mitchell.Avatar);
+        create_post("Adobe", "content/adobecc.jpg", "", "Creative Cloud", 408, Lysanne.Name, Lysanne.Avatar);
+        create_post("Marketing", "content/marketing.jpg", "", "Alles.", 102, Susan.Name, Susan.Avatar);
+        create_post("HU", "content/hu.jpg", "", "HU", 172, me.Name, me.Avatar);
+        create_post("Ai vs. Ps", "content/creativity.jpg", "", "Well", 239, Lysanne.Name, Lysanne.Avatar);
         
-    } 
-    
-    else {
+    } else {
                         
         $("#postlist").html(itemPostList);
         
         $("#postlist").html("");
         
-        create_post("jQuery", "http://www.hnldesign.nl/wp-content/uploads/2013/01/jQuery-debouncing-events.jpg", "", "Write less, do more", 310, Rogier);
-        create_post("DRY", "https://i.ytimg.com/vi/IGH4-ZhfVDk/maxresdefault.jpg", "", "Don't Repeat Yourself", 100, Anne);
-        create_post("Video", "", "https://www.youtube.com/watch?v=LyLviXQERZU", "Video", 200, Mitchell);
-        create_post("Adobe", "http://cdn02.androidauthority.net/wp-content/uploads/2015/06/Adobe-Creative-Cloud.jpg", "", "Creative Cloud", 408, Lysanne);
-        create_post("Marketing", "http://fortunednagroup.com/wp-content/uploads/marketing1.jpg", "", "Alles.", 102, Susan);
-        create_post("HU", "http://www.duic.nl/wp-content/uploads/2011/10/ANP-16396998.jpg", "", "HU", 172, me);
-        create_post("Apple", "http://i.kinja-img.com/gawker-media/image/upload/js3clwbq88ahptxnza3i.jpg", "", "Eat this", 335, Rogier);
+        create_post("jQuery", "content/jquery.jpg", "", "Write less, do more", 310, Rogier.Name, Rogier.Avatar);
+        create_post("DRY", "content/dry.jpg", "", "Don't Repeat Yourself", 100, Anne.Name, Anne.Avatar);
+        create_post("Video", "", "https://www.youtube.com/watch?v=LyLviXQERZU", "Video", 200, Mitchell.name, Mitchell.Avatar);
+        create_post("Adobe", "content/adobecc.jpg", "", "Creative Cloud", 408, Lysanne.Name, Lysanne.Avatar);
+        create_post("Marketing", "content/marketing.jpg", "", "Alles.", 102, Susan.Name, Susan.Avatar);
+        create_post("HU", "content/hu.jpg", "", "HU", 172, me.Name, me.Avatar);
+        create_post("Ai vs. Ps", "content/creativity.jpg", "", "Well", 239, Lysanne.Name, Lysanne.Avatar);
         
         localStorage.setItem(("itemPostList"), $("#postlist").html());
         
@@ -547,13 +554,15 @@ $(document).ready(function () {
         
         e.preventDefault();
         
-        var userID = $("input#userID").val(),
-            userName = $("input#userName").val(),
-            userAvatar = $("input#userAvatar").val(),
-            userColor = $("#colors div.selected").css("background-color"),
-            userHeader = $("input#userHeader").val();
+        var userID = $('input#userID').val(),
+            userName = $('input#userName').val(),
+            userPass = $('input.userPass').val(),
+            userAvatar = $('input#userAvatar').val(),
+            userColor = $('#colors div.selected').css("background-color"),
+            userHeader = $('input#userHeader').val();
         
-        var regSubmit = new registree (userID, userName, userColor, userAvatar, userHeader);        
+        // registree(studentid, name, pass, color, avatar, header, loves, info, group1, group2)
+        var regSubmit = new registree (userID, userName, userPass, userColor, userAvatar, userHeader);        
         regArray.push(regSubmit);
         
         // console.log(regArray);
@@ -568,7 +577,7 @@ $(document).ready(function () {
                 
         reset_profile(); reset_images(); reset_colors();
         
-        window.location.replace ('index.html');  
+        window.location.replace ('timeline.html');  
     });
     
     // Init submit button prop enabled because logic
@@ -672,9 +681,12 @@ $(document).ready(function () {
             fVideo = $("#video-embed").val(),
             fText = $("#newposttext").val(),
             
-            likes = 0;
+            likes = 0,
         
-        create_post(fTitle, fImage, fVideo, fText, likes);
+            avatar = $('.home img').attr("src"),
+            name = $('.username span').text();
+        
+        create_post(fTitle, fImage, fVideo, fText, likes, name, avatar);
         
     });
     
@@ -766,9 +778,27 @@ $(document).ready(function () {
         
         $.each(friends, function(i, val){
             
-            $('#friends').append("<div class=\"fbox " + friends[i].StudentID + "\"><div class=\"hdr\"><img src=\"" + friends[i].Header + "\"/></div><div><div class=\"friendsavatar fd\"><img src=\"" + friends[i].Avatar + "\"/></div><div class=\"friendscontent fd\"><h2>" + friends[i].Name + "</h2>" + friends[i].Loves + "<span class=\"fbtns\"><button class=\"connect\" data-type=\"31\">Connect</button><button data-options=\"" + friends[i].StudentID + "\" class=\"message\" data-type=\"32\">Send " + friends[i].Name + " a message</button></span></div></div></div>");
-
+            $('#friends').append("<div class=\"fbox " + friends[i].StudentID + "\"><div class=\"hdr\"><img src=\"" + friends[i].Header + "\"/></div><div><div class=\"friendsavatar fd\"><img src=\"" + friends[i].Avatar + "\"/></div><div class=\"friendscontent fd\"><h2>" + friends[i].Name + "</h2><p>" + friends[i].Loves + "</p><span class=\"fbtns\"><button class=\"showmore\" data-type=\"30\">Toggle full profile</button><button class=\"connect\" data-type=\"31\">Connect</button><button data-options=\"" + friends[i].StudentID + "\" class=\"message\" data-type=\"32\">Send " + friends[i].Name + " a message</button></span><div class=\"info\"><p>" + friends[i].Info + "</p><div class=\"gbox\"><h3>" + friends[i].Name + " is a member of the following groups:</h3><div class=\"groups\"><img src=\"groups/" + friends[i].Group1.toLowerCase() + ".jpg\"/><h4>" + friends[i].Group1 + "</h4></div><div class=\"groups\"><img src=\"groups/" + friends[i].Group2.toLowerCase() + ".jpg\"/><h4>" + friends[i].Group2 + "</h4></div></div></div></div></div>");
+                                             
         });
+        
+        $('.fbox').each(function() {
+            
+            var gb = $(this).children('.groups');
+        
+            $('.groups').each(function() {
+                            
+                if ($(this).text() == "") { 
+                    
+                    $(this).remove();
+                
+                }
+                
+            });
+            
+        });            
+        
+        $('.info').hide();
         
     });
     
@@ -776,7 +806,12 @@ $(document).ready(function () {
         
         var thisID = $(this).data('options');
         
-        if ($(e.currentTarget).data('type') == '31') {
+        if ($(e.currentTarget).data('type') == '30') {
+                                    
+            $(this).closest('.fbox').find('.info').toggle();
+            $(this).closest('.fbox').siblings('.fbox').find('.info').hide();
+            
+        } else if ($(e.currentTarget).data('type') == '31') {
             $(e.currentTarget).toggleClass("connected");
             
             if ($(e.currentTarget).hasClass("connected")) {

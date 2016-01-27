@@ -84,6 +84,7 @@ nav .activity, nav .alterimg {
     box-sizing: border-box;
     font-family: Roboto;
     position: relative;
+    transition: .25s;
 }
 
 section.lb {
@@ -897,7 +898,7 @@ footer {
 
         .friendscontent {
             
-            padding: 16px;
+            padding: 16px 0;
             width: calc(100% - 280px);
             
             .fbtns {
@@ -934,6 +935,25 @@ footer {
             
             display: inline-block;
             vertical-align: top;
+            
+            .info {
+                
+                .groups {
+                    
+                    display: inline-block;
+                    width: 50%;
+                    padding: 16px;
+                    background: #EEE;
+                    
+                    img {
+                        
+                        width: 100%;
+                        
+                    }
+                    
+                }
+                
+            }
             
         }
         
