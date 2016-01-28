@@ -54,11 +54,11 @@ function check_password() {
 
     var userPass = $("input#userPass").val(),
         userPass2 = $("input#userPass2").val(),
-        userPassRegEx = /\d*/;
+        userPassRegEx = new RegExp("[0-9]+");
     
 //    console.log(userPass.length, userPass2.length);
         
-    if (userPass === "" && userPass2 === "") {
+    if (userPass === "" && userPass2 === "") { 
         
         $("span.spanPassR").text("You need a password");
         return "error";
@@ -70,8 +70,21 @@ function check_password() {
         
     } else {
         
-        $("span.spanPassR").text("These passwords match");
-        return "";
+        // If passwords are equal, test if they include a number
+        if (userPassRegEx.test(userPass)) {
+    
+            console.log("NUMMER");
+            $("span.spanPassR").text("These passwords match");
+            
+            return "";
+
+        } else {
+            
+            $("span.spanPassR").text("Your password needs a number");
+            
+            return "error";
+            
+        }
         
     }
     
@@ -301,7 +314,6 @@ function messages(target, location) {
 
     if (receiver == "Rogier") {
 
-        reply("hi", "Klootzak");
         reply("", "Oh, weet ik niet");
 
     } else if (receiver == "Lysanne") {
@@ -320,39 +332,87 @@ function messages(target, location) {
         reply("lukt het", "Ja gaat goed");
         reply("ov", "Oké tot zo!");
 
+    } else if (receiver == "Hekman" || receiver == "ErikHekman") {
+        
+        reply("big", "Data!");
+        reply("java", "Script");
+        
+    } else if (receiver == "Ronald" || receiver == "RonaldVanEssen") {
+        
+        reply("particle", "Photon");
+        
     }
     
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
 
+function search(id) {
+    
+    for (var i in prereg) {
+        
+        if (prereg[i].StudentID === id){
+            
+            var sName = prereg[i].Name,
+                sPass = prereg[i].Password,
+                sID = prereg[i].StudentID,
+                sAvatar = prereg[i].Avatar,
+                sHeader = prereg[i].Header,
+                sColor = prereg[i].Color,
+                
+                sArray = {sName:sName, sPass:sPass, sID:sID, sAvatar:sAvatar, sHeader:sHeader, sColor:sColor};
+            
+            return sArray;
+            
+        }
+    }
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////s
+
 var userAvatar = "https://thirtyroses.files.wordpress.com/2014/08/music-makes-me-happy-by-plastickheart.jpg",
     userHeader = "images/register.jpg";
 
 // Declaration of global variables
 
-var me = new registree ("1682040", "Casimir", "Cloudcademy", "navy", "", "", "jQuery");
-me.Avatar = "https://thirtyroses.files.wordpress.com/2014/08/music-makes-me-happy-by-plastickheart.jpg";
-me.Header = "http://2011.joelglovier.com/img/wallpaper/programmer.jpg";
+////////////////////////////////////////////////////////////////////////////////////////////////
 
-var prereg = [new registree ("1240874", "Hekman", "adalovelace", "coral", "", "", "jQuery"),
-              new registree ("1772361", "Koning", "kooning", "chocolate", "", "", "HTML"),
-              new registree ("1244415", "ErikHekman", "adalovelace", "limegreen", "", "", "PHP"),
-              new registree ("1244676", "ThijsWaardenburg", "appeltaart", "bordeaux", "", "", "CSS"),
-              new registree ("1244124", "Ronald", "purple", "arduino", "", "", "CSS"),
-              new registree ("1244416", "RonaldVanEssen", "photon", "pink", "", "", "CSS")];
+var Casimir =       new registree ("1682040", "Casimir", "Cloudcademy", "navy", "images/casimir.jpg", "images/clouds.jpg", "jQuery", "Mijn tekst", "Anybody Can Learn", "Wordpress");
+var Lysanne =       new registree ("1240874", "Lysanne", "Westra", "coral", "images/lysanne.jpg", "images/clouds-5.jpg", "Vormgeving", "Here is a short biography", "Anybody Can Learn", "Adobe");
+var Anne =          new registree ("1772361", "Anne", "Dreuning", "chocolate", "images/anne.jpg", "images/clouds-1.jpg", "Marketing Communicatie", "Ja mooi dit", "Marketing", "");
+var Mitchell =      new registree ("1680358", "Mitchell", "deRooij", "limegreen", "images/mitchell.jpg", "images/newyork.jpg", "Javascript", "", "Marketing", "Prototyping");
+var Rogier =        new registree ("1677895", "Rogier", "Sangers", "crimson", "images/rogier.jpg", "images/clouds-3.jpg", "Apple", "", "Crossmedia", "Wordpress");
+var Susan =         new registree ("1266545", "Susan", "vanVeenendaal", "crimson", "images/susan.jpg", "images/clouds-4.jpg", "Webdesign", "Hoi", "Adobe", "");
+
+////////////////////////////////////////////////////////////////////////////////////////////////
+
+var Hekman =        new registree ("0000001", "Hekman", "adalovelace", "coral", "images/erik.jpg", "images/bigdata.jpg", "Vormgeving", "Here is a short biography", "Anybody Can Learn", ""),
+    Koning =        new registree ("0000002", "Koning", "kooning", "chocolate", "images/koning.jpg", "images/oranje.jpg", "Vormgeving", "Here is a short biography", "Windows 10", ""),
+    ErikH =         new registree ("0000003", "ErikHekman", "adalovelace", "limegreen", "images/erik.jpg", "images/bigdata.jpg", "Vormgeving", "Here is a short biography", "Anybody Can Learn", ""),
+    Thijs =         new registree ("0000004", "ThijsWaardenburg", "appeltaart", "red", "images/thijs.jpg", "images/javascript.jpg", "Vormgeving", "Here is a short biography", "Javascript", ""),
+    Ronald =        new registree ("0000005", "Ronald", "arduino", "purple", "images/ronald.jpg", "images/pcb.jpg", "Arduino", "Here is a short biography", "Arduino", ""),
+    RonaldvE =      new registree ("0000006", "RonaldVanEssen", "photon", "pink", "images/ronald.jpg", "images/pcb.jpg", "Arduino", "Here is a short biography", "Arduino", "");
+
+var friends = [Hekman, Koning, ErikH, Thijs, Ronald, RonaldvE, Casimir, Lysanne, Anne, Mitchell, Rogier, Susan];
+
+var prereg = [Hekman, Koning, ErikH, Thijs, Ronald, RonaldvE, Casimir, Lysanne, Anne, Mitchell, Rogier, Susan];
 
 var preID = [];
 var prePass = [];
 var invalidNames = [];
 
+// Create separate arrays for ID's, passwords and names.
 $.each(prereg, function(i, val){
     
     preID.push(prereg[i].StudentID);
     prePass.push(prereg[i].Password);
     invalidNames.push(prereg[i].Name);
     
+    // console.log (prereg[i].StudentID, prereg[i].Password);
+    
 });
+
+// console.log(invalidNames);
 
 // Check the newly created & updated array after registering a new user
 var checkArray = JSON.parse(localStorage.getItem("regArray"));
@@ -369,21 +429,9 @@ for( i = 0; i < regArray.length; i++ ){ invalidID.push(regArray[i].StudentID); }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
 
-// var invalidNames = ["Hekman", "Koning", "ErikHekman", "ThijsWaardenburg", "Ronald", "RonaldVanEssen"];
-
-////////////////////////////////////////////////////////////////////////////////////////////////
-
 var loginAttempts = 3;
 
-////////////////////////////////////////////////////////////////////////////////////////////////
 
-var Lysanne =   new registree ("1240874", "Lysanne", "Westra", "coral", "images/pfimg-4.jpg", "images/clouds.jpg", "Vormgeving", "Here is a short biography", "Anybody Can Learn", "Adobe");
-var Anne =      new registree ("1772361", "Anne", "Dreuning", "chocolate", "images/pfimg-1.jpg", "images/clouds-1.jpg", "Marketing Communicatie", "Ja mooi dit", "Marketing", "");
-var Mitchell =  new registree ("1244415", "Mitchell", "deRooij", "limegreen", "images/pfimg-2.jpg", "images/clouds-2.jpg", "Javascript", "", "Marketing", "Prototyping");
-var Rogier =    new registree ("1244676", "Rogier", "Sangers", "bordeaux", "images/pfimg.jpg", "images/clouds-3.jpg", "Apple", "", "Crossmedia", "Wordpress");
-var Susan =     new registree ("1266545", "Susan", "vanVeenendaal", "bordeaux", "images/pfimg-3.jpg", "images/clouds-4.jpg", "Webdesign", "Hoi", "Adobe", "");
-
-var friends = [Lysanne, Anne, Mitchell, Rogier, Susan];
 
 // Everything that needs to run initially goes first
 $(document).ready(function () {
@@ -402,22 +450,12 @@ $(document).ready(function () {
         create_post("Video", "", "https://www.youtube.com/watch?v=LyLviXQERZU", "Video", 200, Mitchell.Name, Mitchell.Avatar);
         create_post("Adobe", "content/adobecc.jpg", "", "Creative Cloud", 408, Lysanne.Name, Lysanne.Avatar);
         create_post("Marketing", "content/marketing.jpg", "", "Alles.", 102, Susan.Name, Susan.Avatar);
-        create_post("HU", "content/hu.jpg", "", "HU", 172, me.Name, me.Avatar);
+        create_post("HU", "content/hu.jpg", "", "HU", 172, Casimir.Name, Casimir.Avatar);
         create_post("Ai vs. Ps", "content/creativity.jpg", "", "Well", 239, Lysanne.Name, Lysanne.Avatar);
         
     } else {
                         
         $("#postlist").html(itemPostList);
-        
-        $("#postlist").html("");
-        
-        create_post("jQuery", "content/jquery.jpg", "", "Write less, do more", 310, Rogier.Name, Rogier.Avatar);
-        create_post("DRY", "content/dry.jpg", "", "Don't Repeat Yourself", 100, Anne.Name, Anne.Avatar);
-        create_post("Video", "", "https://www.youtube.com/watch?v=LyLviXQERZU", "Video", 200, Mitchell.Name, Mitchell.Avatar);
-        create_post("Adobe", "content/adobecc.jpg", "", "Creative Cloud", 408, Lysanne.Name, Lysanne.Avatar);
-        create_post("Marketing", "content/marketing.jpg", "", "Alles.", 102, Susan.Name, Susan.Avatar);
-        create_post("HU", "content/hu.jpg", "", "HU", 172, me.Name, me.Avatar);
-        create_post("Ai vs. Ps", "content/creativity.jpg", "", "Well", 239, Lysanne.Name, Lysanne.Avatar);
         
         localStorage.setItem(("itemPostList"), $("#postlist").html());
         
@@ -513,9 +551,11 @@ $(document).ready(function () {
             }
             
         } else if ($(e.currentTarget).data('type') == '1') {
-            $(this).closest('.p').effect("drop", 900, function() {
+            $(this).closest('.p').effect("fade", 900, function() {
                 
                 $(this).remove();
+                
+                localStorage.setItem(("itemPostList"), $("#postlist").html());
                 
             });
         }
@@ -575,8 +615,8 @@ $(document).ready(function () {
         
         e.preventDefault();
                 
-        var myID = me.StudentID,
-            myPass = me.Password,
+        var myID = Casimir.StudentID,
+            myPass = Casimir.Password,
 
             loginID = $('input#loginID').val(),
             loginPass = $('input#loginPass').val();
@@ -585,6 +625,18 @@ $(document).ready(function () {
 
             if (loginPass == myPass){
 
+                var userID = me.StudentID,
+                    userName = me.Name,
+                    userAvatar = me.Avatar,
+                    userColor = me.Color,
+                    userHeader = me.Header;
+
+                localStorage.setItem("itemID", userID);
+                localStorage.setItem("itemName", userName);
+                localStorage.setItem("itemAvatar", userAvatar);
+                localStorage.setItem("itemColor", userColor);
+                localStorage.setItem("itemHeader", userHeader);
+                
                 window.location.replace ('timeline.html');
 
             } else if ((loginPass !== "") && (loginPass !== myPass)) {
@@ -596,14 +648,6 @@ $(document).ready(function () {
                 $("input#sm-login").siblings('span').html("You have " + loginAttempts + " attempts left");
                 
                 $('input#loginPass').val("");
-                
-                if (loginAttempts === 0) {
-                                        
-                    $(e.currentTarget).find('input').prop({ disabled: true });
-                    
-                    $("input#sm-login").siblings('span').html("Try again later");
-                    
-                }
                                 
             }
 
@@ -611,23 +655,50 @@ $(document).ready(function () {
 
             $("input#sm-login").siblings('span').html("You need to fill in all fields");
 
+        } else if ( $.inArray(loginID, preID) != "-1" ) {
+            
+            var searched = search(loginID);
+            
+            // Search for submitted ID in a set of objects containing more info
+            if ( loginPass === searched.sPass ) {
+                
+                console.log("YES");
+                
+                console.log(searched.sName, searched.sPass);
+                
+                localStorage.setItem("itemID", searched.sID);
+                localStorage.setItem("itemName", searched.sName);
+                localStorage.setItem("itemAvatar", searched.sAvatar);
+                localStorage.setItem("itemColor", searched.sColor);
+                localStorage.setItem("itemHeader", searched.sHeader);
+                
+                window.location.replace ('timeline.html');
+                
+            } else {
+                
+                loginAttempts--;
+                
+                animate_form();
+                                
+                $("input#sm-login").siblings('span').html("You have " + loginAttempts + " attempts left");
+                
+                $('input#loginPass').val("");
+                
+            }
+            
         } else {
             
-            $("input#sm-login").siblings('span').html("Your ID and/or password are wrong");
+            $("input#sm-login").siblings('span').html("Combination of ID & password unknown");
             
         }
         
-        var userID = me.StudentID,
-            userName = me.Name,
-            userAvatar = me.Avatar,
-            userColor = me.Color,
-            userHeader = me.Header;
-        
-        localStorage.setItem("itemID", userID);
-        localStorage.setItem("itemName", userName);
-        localStorage.setItem("itemAvatar", userAvatar);
-        localStorage.setItem("itemColor", userColor);
-        localStorage.setItem("itemHeader", userHeader);
+        if (loginAttempts === 0) {
+                                        
+            $(e.currentTarget).find('input').prop({ disabled: true });
+
+            $("input#sm-login").siblings('span').html("Try again later");
+
+        }
         
     });
     
@@ -731,14 +802,6 @@ $(document).ready(function () {
         
 	});
     
-    $('body').on("click", 'button.r', function(e) {
-        
-        $(this).closest('li').remove();
-        
-        localStorage.setItem(("likedPosts"), $("#activitylist").html());
-        
-    });
-    
     // Popout image 
     $('body').on("click", 'img', function (e) {
                 
@@ -766,7 +829,12 @@ $(document).ready(function () {
         
         $.each(friends, function(i, val){
             
-            $('#friends').append("<div class=\"fbox " + friends[i].StudentID + "\"><div class=\"hdr\"><img src=\"" + friends[i].Header + "\"/></div><div><div class=\"friendsavatar fd\"><img src=\"" + friends[i].Avatar + "\"/></div><div class=\"friendscontent fd\"><h2>" + friends[i].Name + "</h2><p>" + friends[i].Loves + "</p><span class=\"fbtns\"><button class=\"showmore\" data-type=\"30\">Toggle full profile</button><button class=\"connect\" data-type=\"31\">Connect</button><button data-options=\"" + friends[i].StudentID + "\" class=\"message\" data-type=\"32\">Send " + friends[i].Name + " a message</button></span><div class=\"info\"><p>" + friends[i].Info + "</p><div class=\"gbox\"><h3>" + friends[i].Name + " is a member of the following groups:</h3><div class=\"groups\"><img src=\"groups/" + friends[i].Group1.toLowerCase() + ".jpg\"/><h4>" + friends[i].Group1 + "</h4></div><div class=\"groups\"><img src=\"groups/" + friends[i].Group2.toLowerCase() + ".jpg\"/><h4>" + friends[i].Group2 + "</h4></div></div></div></div></div>");
+            // Compare generated list to localstorage variable containing logged in credentials
+            if (friends[i].StudentID !== localStorage.getItem("itemID")) {
+            
+                $('#friends').append("<div class=\"fbox " + friends[i].StudentID + "\"><div class=\"hdr\"><img src=\"" + friends[i].Header + "\"/></div><div><div class=\"friendsavatar fd\"><img src=\"" + friends[i].Avatar + "\"/></div><div class=\"friendscontent fd\"><h2>" + friends[i].Name + "</h2><p>" + friends[i].Loves + "</p><span class=\"fbtns\"><button class=\"showmore\" data-type=\"30\">Toggle full profile</button><button class=\"connect\" data-type=\"31\">Connect</button><button data-options=\"" + friends[i].StudentID + "\" class=\"message\" data-type=\"32\">Send " + friends[i].Name + " a message</button></span><div class=\"info\"><p>" + friends[i].Info + "</p><div class=\"gbox\"><h3>" + friends[i].Name + " is a member of the following groups:</h3><div class=\"groups\"><img src=\"groups/" + friends[i].Group1.toLowerCase() + ".jpg\"/><h4>" + friends[i].Group1 + "</h4></div><div class=\"groups\"><img src=\"groups/" + friends[i].Group2.toLowerCase() + ".jpg\"/><h4>" + friends[i].Group2 + "</h4></div></div></div></div></div>");
+                
+            }
                                              
         });
         
@@ -789,7 +857,7 @@ $(document).ready(function () {
         $('.info').hide();
         
     });
-    
+
     $('body').on("click", 'button', function(e){
         
         var thisID = $(this).data('options');
@@ -833,7 +901,11 @@ $(document).ready(function () {
         
         $.each(friends, function(i, val){
             
-            $('#messages').append("<div id=\"" + friends[i].StudentID + "\" class=\"fmsg\"><div class=\"friendsavatar fd\"><img src=\"" + friends[i].Avatar + "\"/></div><div class=\"friendscontent fd\"><h3>" + friends[i].Name + "</h3></div><div class=\"friendsconversation fd\"><div class=\"newmsg\"><input class=\"msgin\" type=\"text\" /><button class=\"spm\">Send</button></div><div class=\"msglist\"></div></div></div>");
+            if (friends[i].StudentID !== localStorage.getItem("itemID")) {
+            
+                $('#messages').append("<div id=\"" + friends[i].StudentID + "\" class=\"fmsg\"><div class=\"friendsavatar fd\"><img src=\"" + friends[i].Avatar + "\"/></div><div class=\"friendscontent fd\"><h3>" + friends[i].Name + "</h3></div><div class=\"friendsconversation fd\"><div class=\"newmsg\"><input class=\"msgin\" type=\"text\" /><button class=\"spm\">Send</button></div><div class=\"msglist\"></div></div></div>");
+                
+            }
             
         });
         

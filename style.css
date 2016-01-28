@@ -319,6 +319,8 @@ header {
         right: auto; }
   header #username {
     padding-left: 48px; }
+    header #username span {
+      font-size: 64px; }
   header #usernav {
     background: white;
     width: 100%;
