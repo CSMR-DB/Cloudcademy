@@ -340,6 +340,7 @@ function messages(target, location) {
     } else if (receiver == "Ronald" || receiver == "RonaldVanEssen") {
         
         reply("particle", "Photon");
+        reply("", "...");
         
     }
     
@@ -614,44 +615,11 @@ $(document).ready(function () {
     $('form#loginform').submit(function (e) {
         
         e.preventDefault();
-                
-        var myID = Casimir.StudentID,
-            myPass = Casimir.Password,
 
-            loginID = $('input#loginID').val(),
+        var loginID = $('input#loginID').val(),
             loginPass = $('input#loginPass').val();
 
-        if (loginID == myID){
-
-            if (loginPass == myPass){
-
-                var userID = me.StudentID,
-                    userName = me.Name,
-                    userAvatar = me.Avatar,
-                    userColor = me.Color,
-                    userHeader = me.Header;
-
-                localStorage.setItem("itemID", userID);
-                localStorage.setItem("itemName", userName);
-                localStorage.setItem("itemAvatar", userAvatar);
-                localStorage.setItem("itemColor", userColor);
-                localStorage.setItem("itemHeader", userHeader);
-                
-                window.location.replace ('timeline.html');
-
-            } else if ((loginPass !== "") && (loginPass !== myPass)) {
-
-                loginAttempts--;
-                
-                animate_form();
-                                
-                $("input#sm-login").siblings('span').html("You have " + loginAttempts + " attempts left");
-                
-                $('input#loginPass').val("");
-                                
-            }
-
-        } else if (loginID == "" || loginPass == "") {
+        if (loginID == "" || loginPass == "") {
 
             $("input#sm-login").siblings('span').html("You need to fill in all fields");
 
@@ -661,10 +629,6 @@ $(document).ready(function () {
             
             // Search for submitted ID in a set of objects containing more info
             if ( loginPass === searched.sPass ) {
-                
-                console.log("YES");
-                
-                console.log(searched.sName, searched.sPass);
                 
                 localStorage.setItem("itemID", searched.sID);
                 localStorage.setItem("itemName", searched.sName);
